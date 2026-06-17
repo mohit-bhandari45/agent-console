@@ -63,13 +63,6 @@ export class AgentWebSocketClient {
             const message: ServerMessage = JSON.parse(event.data);
             console.log("Message type:", message.type, "seq:", message.seq)
 
-            // setting the payload here only
-            const eventPayload: TraceEvent = {
-                timestamp: Date.now(),
-                message: message
-            };
-            this.onEventCallback?.(eventPayload);
-
             if (message.type === "PING") {
                 const PONG: ClientMessage = {
                     type: "PONG",
@@ -82,6 +75,11 @@ export class AgentWebSocketClient {
             const messages: ServerMessage[] = this.buffer.add(message);
             for (const message of messages) {
                 console.log("Processing seq:", message.seq, "type:", message.type)
+                const eventPayload: TraceEvent = {
+                    timestamp: Date.now(),
+                    message: message
+                };
+                this.onEventCallback?.(eventPayload);
                 this.handleMessage(message);
             }
         }
