@@ -109,13 +109,17 @@ agent-console/
 ├── app/
 │   └── page.tsx              ← main page, wires callbacks
 ├── lib/
-│   └── websocket/
-│       ├── client.ts         ← WebSocket connection manager
-│       ├── sequenceBuffer.ts ← seq ordering + deduplication
-│       └── types.ts          ← all TypeScript types
+│   ├── websocket/
+│   │   ├── client.ts         ← WebSocket connection manager
+│   │   ├── sequenceBuffer.ts ← seq ordering + deduplication
+│   │   └── types.ts          ← all TypeScript types
+│   └── utils.ts              ← shared utilities (highlightElement)
 ├── components/
 │   └── TraceTimeline/
 │       └── index.tsx         ← real-time event log panel
+├── screenshots/
+│   ├── chat-tool-call.png    ← streamed response with tool call
+│   └── trace-timeline.png    ← trace timeline in action
 ├── DECISIONS.md              ← architectural decisions
 └── README.md
 ```
@@ -146,7 +150,7 @@ See `DECISIONS.md` for full details. Summary:
 
 ## Chaos Mode Screen Recording
 
-[Link to screen recording]
+[Watch chaos mode recording](https://www.loom.com/share/5280aa0180894a508f6ce8dde9052c98)
 
 ---
 
